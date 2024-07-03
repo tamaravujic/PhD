@@ -1,0 +1,16 @@
+##The files associated with this analysis are found in:
+/gel_data_resources/main_programme/aggregation/aggregate_gVCF_strelka/aggV2/additional_data/PCs_relatedness/relatedness
+
+##The kinship coefficients are stored in:
+
+GEL_aggV2_MAF5_mp10_0.0442.kin0
+
+##The data is sorted by plate keys not Patient IDs. The plate keys can be found in:
+
+labkey > main_programme_v18 > plated_sample
+
+##To view relatedness associated with your patient, in the terminal:
+
+grep your_plate_key GEL_aggV2_MAF5_mp10_0.0442.kin0
+
+##If the patient is not related to anybody there will be no output.
