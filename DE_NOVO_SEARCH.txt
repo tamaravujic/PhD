@@ -1,0 +1,53 @@
+###IN TERMINAL###
+###filter and download the denovo_flagged_variants file: lbakey>main programme>denovo_flagged_variants, filter for chr21 and for each genome assembly. Download both.###
+
+### format txt file to bed ###
+
+awk -v FS='\t' -v OFS='\t' '{prints $4, $5-1, $5, $2}' denovo_flagged_variants_grch38.tsv | sort -k 1V,1 -k2,2n | uniq > denovo_flagged_variants_grch38.bed 
+
+awk -v FS='\t' -v OFS='\t' '{prints $4, $5-1, $5, $2}' denovo_flagged_variants_grch37.tsv | sort -k 1V,1 -k2,2n | uniq > denovo_flagged_variants_grch37.bed 
+
+### intersect the chr21 de novo bed file with the ERG regions within ERG gene body and outside of ERG gene body###
+
+module load bio/BEDTools/2.27.1-foss-2018b
+
+bedtools intersect -wo -a ERG_ENHANCERS_grch38.bed -b denovo_flagged_variants_grch38.bed > ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch38.txt
+bedtools intersect -u -a denovo_flagged_variants_grch38.bed -b ERG_BODY_grch38.bedd > ERG_BODY_DE_NOVO_INTERSECTED_grch38.txt
+
+bedtools intersect -wo -a ERG_ENHANCERS_grch37.bed -b denovo_flagged_variants_grch37.bed > ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch37.txt
+bedtools intersect -u -a denovo_flagged_variants_grch37.bed -b ERG_BODY_grch37.bedd > ERG_BODY_DE_NOVO_INTERSECTED_grch37.txt
+
+### check how many variants and families there are (removes duplicates and counts unique entries###
+Sort -u k5,5 denovo_flagged_variants_grch38.tsv | wc -l
+Sort -u k5,5 denovo_flagged_variants_grch38.tsv | wc -l
+
+Sort -u k5,5 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch38.txt | wc -l
+Sort -u k7,7 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch38.txt | wc -l
+Sort -u k3,3 ERG_BODY_DE_NOVO_INTERSECTED_grch38.txt | wc -l
+Sort -u k4,4 ERG_BODY_DE_NOVO_INTERSECTED_grch38.txt | wc -l
+
+Sort -u k5,5 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch37.txt | wc -l
+Sort -u k7,7 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch37.txt | wc -l
+Sort -u k3,3 ERG_BODY_DE_NOVO_INTERSECTED_grch37.txt | wc -l
+Sort -u k4,4 ERG_BODY_DE_NOVO_INTERSECTED_grch37.txt | wc -l
+
+### Select patient IDs ###
+cut -f4 ERG_BODY_DE_NOVO_INTERSECTED_grch38.txt | sort | uniq > family_IDs_ERG_body_grch38.txt
+cut -f4 ERG_BODY_DE_NOVO_INTERSECTED_grch37.txt | sort | uniq > family_IDs_ERG_body_grch37.txt
+cut -f7 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch38.txt | sort | uniq > family_IDs_ERG_enhancers_grch38.txt
+cut -f7 ERG_ENHANCERS_DE_NOVO_INTERSECTED_grch37.txt | sort | uniq > family_IDs_ERG_enhancers_grch37.txt
+
+###combine patients IDs into one file which can be intersected with cohort list###
+
+cut -f4 family_IDs_ERG_body_grch38.txt | sort | uniq > family_IDs_ERG_body.txt
+cut -f4 family_IDs_ERG_body_grch37.txt | sort | uniq >> family_IDs_ERG_body.txt
+
+cut -f7 family_IDs_ERG_enhancers_grch38.txt | sort | uniq > family_IDs_ERG_enhancers.txt
+cut -f7 family_IDs_ERG_enhancers_grch37.txt | sort | uniq >> family_IDs_ERG_enhancers.txt
+
+
+###Intersect with cohort list to identify and primary lymphedema patients with a de novo variant ###
+
+grep -wf family_IDs_ERG_enhancers.txt cohort.tsv > patient_exp_ERG_enhancer_var.txt
+grep -wf family_IDs_ERG_body.txt cohort.tsv > patient_exp_ERG_body_var.txt
+
