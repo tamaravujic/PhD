@@ -1,0 +1,49 @@
+###The Graphtyper package can be used to test for the variant in the entire cohort. Install GraphTyper.
+## IN TERMINAL
+
+. /tools/aws-workspace-apps/miniconda3/23.11.0/etc/profile.d/conda.sh # Check if the conda path is updated in Double Helix
+conda create --prefix /home/tvujic/conda_envs/graphtyper -c conda-bioconda graphtyper
+conda activate /home/tvujic/conda_envs/graphtyper
+
+##Create a file with the paths to all bam files for your participant, using a participant.tsv file downloaded from the participant explorer. You must remove the GRCh37 participants as the code will not run with their file paths.
+
+grep GRCh38 participant.tsv | grep -v relative > participant_clean.tsv 
+
+# Create a paths.txt file by cutting the column from the participant_clean.tsv with the paths then make into .bam file
+sed -i 's/\r//g' paths.txt # Replace the \r newline character
+
+touch bam_paths.txt
+paths=$(cat paths.txt | grep -v GRCh37)
+for x in $paths; do ls $x/*/Assembly/*bam >> bam_paths.txt; done
+
+
+##Create GraphTyper script (.sh file) ##
+
+#!/bin/bash
+#BSUB -q medium
+#BSUB -P re_gecip_neurology
+#BSUB -cwd "... #your working directory
+#BSUB -o graphtyper.stdout
+#BSUB -e graphtyper.stder
+#BSUB -n 12
+#BSUB -R "rusage[mem=5000]"
+#BSUB -M 5000
+
+module load bcftools/1.16
+module load samtools/1.16.1
+
+. /tools/aws-workspace-apps/miniconda3/23.11.0/etc/profile.d/conda.sh 
+conda activate /home/TVUJIC/conda_envs/graphtyper
+
+PATH_SAM_DIR= #where your bam.txt is
+PATH_INPUT_DIR= #where your script files are 
+PATH_OUTPUT_DIR= #where you want the output to be saved
+PATH_REF_DIR="/genomes/bertha-prod/resources/bertha/data/GRCh38Decoy/illumina/Homo_sapiens/NCBI/GRCh38Decoy/Sequence/WholeGenomeFasta"
+
+graphtyper genotype $PATH_REF_DIR/genome.fa --sams=$PATH_SAM_DIR/bam_paths.txt --region=chr1:12131422-12131423 --output=$PATH_OUTPUT_DIR --threads=12
+
+
+##To run the GraphTyper script IN TERMINAL:
+
+chmod +x graphtyper_script.sh #give permission to the script 
+bsub < graphtyper_script.sh
