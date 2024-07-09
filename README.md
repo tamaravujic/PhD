@@ -1,4 +1,4 @@
-### All code used during my MRes/PhD. Some are to be inputed straight into the terminal in GENOMICS ENGLAND others ar scripts, python workbooks or R studio codes. 
+### All code used during my MRes/PhD. Some are to be inputed straight into the terminal in GENOMICS ENGLAND others ar scripts, Jupyter workbooks or R studio codes. 
 
 Binary_enhancer_specificty_heatmap.R : R studio code used to create a heatmap using binary data for ATAC signals in enhancer regions of in house Endothelial cell ATAC and Encode ATAC. 
 
