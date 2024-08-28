@@ -8,7 +8,7 @@ Cohort_variant_search.sh : This is a script used in the GEL terminal to automati
 
 DE_NOVO_SEARCH.txt : This is the code used in the GEL terminal for the DE novo variant filtering process. 
 
-ECs_combidning_bedfiles.sh : This is a script that combines bed files form the inhouse Endothelial cell ATAC seqeuncing. The output was used to generate a binary heatmap of LEC specific enhancer regions.The code for the heatmap is found in Binary_enhancer_specificty_heatmap.R
+ECs_combined_bedfiles.sh : This is a script that combines bed files form the inhouse Endothelial cell ATAC seqeuncing. The output was used to generate a binary heatmap of LEC specific enhancer regions.The code for the heatmap is found in Binary_enhancer_specificty_heatmap.R
 
     
 Encode_CRES_SPEC.sh : This is a script that combines ENCODE broadpeak files and adds a column with the corresponding cell name. This is then intersected with the defined enhancer regions. This was used to generate a file with the replicate ATAC peaks combined which was then used for a binary heatmap. The code for the heatmap is found in Binary_enhancer_specificty_heatmap.R
