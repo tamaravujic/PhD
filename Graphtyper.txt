@@ -21,7 +21,7 @@ for x in $paths; do ls $x/*/Assembly/*bam >> bam_paths.txt; done
 
 #!/bin/bash
 #BSUB -q medium
-#BSUB -P re_gecip_neurology
+#BSUB -P re_gecip_cardiovascular
 #BSUB -cwd "... #your working directory
 #BSUB -o graphtyper.stdout
 #BSUB -e graphtyper.stder
@@ -42,6 +42,8 @@ PATH_REF_DIR="/genomes/bertha-prod/resources/bertha/data/GRCh38Decoy/illumina/Ho
 
 graphtyper genotype $PATH_REF_DIR/genome.fa --sams=$PATH_SAM_DIR/bam_paths.txt --region=chr1:12131422-12131423 --output=$PATH_OUTPUT_DIR --threads=12
 
+## To filter the output file for variants that are AF=0 or less than 0.01
+bcftools filter -e 'AF=0 || AF>0.01' "PATH/TO/GRAPHTYPER_OUTPUTFILE.VCF.GZ" -o "PATH/TO/new_filtered_OUTPUTFILE.VCF.GZ"
 
 ##To run the GraphTyper script IN TERMINAL:
 
