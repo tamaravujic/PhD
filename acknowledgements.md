@@ -16,11 +16,9 @@ Dr Maude contributed significantly to the development of analysis workflows, par
 ## External Tools and Pipelines
 
 ### ChromBPNet
-**ChromBPNet:** The official github for ChromBPNet can be found here https://github.com/kundajelab/chrombpnet?tab=readme-ov-file
-The Pre print https://www.biorxiv.org/content/10.1101/2024.12.25.630221v2
+**Official ChromBPNet Pipeline:** https://github.com/kundajelab/chrombpnet?tab=readme-ov-file
 
 ---
-
 ### ATAC-seq Analysis Pipeline
 
 **CebolaLab ATAC-seq Pipeline:** https://github.com/CebolaLab/ATAC-seq
