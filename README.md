@@ -36,7 +36,7 @@ Collection of scripts used to identifying non-coding genetic variants in the ERG
 |--------|---------|
 | `Variant_Pathogenicity_threshold_filtering.R` | Filter variants by pathogenicity scores (CADD, REVEL, DeepSEA) |
 
-### 2.1: MotifbreakR - Transcription Factor Binding Prediction
+### Subsection 2.1: MotifbreakR - Transcription Factor Binding Prediction
 
 | Script | Purpose |
 |--------|---------|
@@ -44,7 +44,7 @@ Collection of scripts used to identifying non-coding genetic variants in the ERG
 | `MotifbreakR_INDEL_pipeline.R` | Predict TF binding disruption for INDELs |
 | `motifbreakR_output_sort.R` | Consolidate motifbreakR results with pathogenicity scores |
 
-### 2.2: ChromBPNet - Deep Learning Chromatin Accessibility
+### Subsection 2.2: ChromBPNet - Deep Learning Chromatin Accessibility
 
 | Script | Purpose |
 |--------|---------|
@@ -54,42 +54,43 @@ Collection of scripts used to identifying non-coding genetic variants in the ERG
 | `ChromBPNet_variant_prediction.sh` | Score variants with ChromBPNet |
 | `chrombpnet_variant_scores_analysis.R` | Generate volcano plots and group comparisons |
 
-### 2.3: DeepSEA - Non-coding Variant Impact
+### Subsection 2.3: DeepSEA - Non-coding Variant Impact
 
 | Script | Purpose |
 |--------|---------|
 | `deepsea_column_extraction.sh` | Extract DeepSEA predictions from annotation files |
 
-### 2.4: RegVar - Tissue-specific Regulatory Predictions
+### Subsection 2.4: RegVar - Tissue-specific Regulatory Predictions
 
 | Script | Purpose |
 |--------|---------|
 | `regvar_postprocessing.sh` | Filter RegVar output by variant-gene pair list |
 
-### 2.5: AlphaGenome - Non-coding Variant Prediction
+### Subsection 2.5: AlphaGenome - Non-coding Variant Prediction
 
 | Script | Purpose |
 |--------|---------|
 | `Alphagenome_github.ipynb` | Predict effects of non-coding variants using AlphaGenome API |
 
-### 2.6: VEP - Variant Effect Predictor
+### Subsection 2.6: VEP - Variant Effect Predictor
 
 | Script | Purpose |
 |--------|---------|
 | `VEP_annotation.sh` | Annotate variants with VEP 111 (CADD, REVEL, gnomAD, SpliceAI plugins) |
 
+
 ---
 
 ## SECTION 3: ATAC-seq Investigations
 
-### 3.1: imLEC ATAC-seq Processing
+### Subsection 3.1: imLEC ATAC-seq analysis
 
 | Script | Purpose |
 |--------|---------|
 | `imlec_atac_seq.ipynb` | ATAC-seq processing pipeline for immortalised lymphatic endothelial cells |
 | `imLEC_ATAC_venn_diagrams.R` | Generate Venn diagrams for peak overlaps between cell types |
 
-### 3.2: Enhancer Analysis and Visualisation
+### Subsection 3.2: Enhancer Cell type specifcity 
 
 | Script | Purpose |
 |--------|---------|
@@ -97,8 +98,6 @@ Collection of scripts used to identifying non-coding genetic variants in the ERG
 | `Submit_dbaCount-2.sh` | PBS job for DiffBind peak counting (dba.count step) |
 | `Binary_enhancer_specificity_heatmaps_github.R` | Generate binary enhancer specificity heatmaps |
 | `ENCODE_ATAC_data_processing_for_heatmap.sh` | Process ENCODE ATAC-seq data for comparison with in-house data |
-| `ECs_combined_bedfiles.sh` | Combine ATAC-seq BED files across replicates |
-
 
 
 ---
