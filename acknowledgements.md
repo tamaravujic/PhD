@@ -9,7 +9,7 @@ This repository builds upon work from many researchers, bioinformaticians, and t
 Dr Maude contributed significantly to the development of analysis workflows, particularly:
 - **ChromBPNet Analysis Pipeline:** Complete analysis workflow adaptation of ChromBPNet deep learning model for variant effect prediction
 - **ATAC-seq Analysis:** Complete ATAC-seq analysis workflow from raw sequencing to peak calling and enhancer characterisation
-- **Guidance for all computational analysis 
+- **Guidance for all computational analysis**
 
 
 ----
