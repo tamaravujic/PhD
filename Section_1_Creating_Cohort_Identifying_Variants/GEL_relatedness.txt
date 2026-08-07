@@ -1,0 +1,36 @@
+# GEL Relatedness Data Reference
+
+## Overview
+Instructions for accessing and querying kinship coefficients for samples in the GEL genomics dataset.
+
+## Data Location
+- **Path**: `/gel_data_resources/main_programme/aggregation/aggregate_gVCF_strelka/aggV2/additional_data/PCs_relatedness/relatedness`
+- **File**: `GEL_aggV2_MAF5_mp10_0.0442.kin0`
+
+## Important Notes
+- Data is sorted by **plate keys**, not Patient IDs
+- Plate keys can be found in: **labkey > main_programme_v18 > plated_sample**
+
+## How to Check Relatedness for Your Patient
+
+1. Obtain the plate key for your patient from labkey
+2. Search the kinship file in the terminal:
+
+```bash
+grep your_plate_key GEL_aggV2_MAF5_mp10_0.0442.kin0
+```
+
+3. **Expected output**:
+   - If related to others: returns list of related individuals with kinship coefficients
+   - If no relations found: returns no output (blank)
+
+## Example
+
+```bash
+# Query for a specific plate key
+grep "ABC123" GEL_aggV2_MAF5_mp10_0.0442.kin0
+
+# Output (if related):
+# ABC123  XYZ789  0.25
+# ABC123  DEF456  0.125
+```
