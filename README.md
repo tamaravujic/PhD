@@ -106,7 +106,7 @@ Collection of scripts used to identifying non-coding genetic variants in the ERG
 
 If using this pipeline in research, please cite:
 
-Vujic T, et al. (2026). Primary Lymphedema genomic analysis pipeline. GitHub.
+Vujic T (2026). Primary Lymphedema genomic analysis pipeline. GitHub.
 
 And cite relevant tool papers (see ACKNOWLEDGMENTS.md).
 
