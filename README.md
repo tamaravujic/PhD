@@ -24,7 +24,7 @@ Supervised by Dr Graeme Birsdey and Dr Inês Cebola
 | `GEL_vcf_variant_checker.sh` | Check presence/genotypes of variants in VCF files |
 | `GEL_denovo_variant_filtering.sh` | Filter de novo variants in ERG regions |
 | `GEL_SV_SEARCH.sh` | Search for structural variants in GEL cohort |
-| `GEL_find_SV_breakpoints.sh` | Find SV breakpoints in GEL data |
+| `GEL_find_SV_breakpoints.sh` | Find structural variant breakpoints in GEL data |
 | `GEL_VEP.sh` | VEP annotation inside GEL environment |
 | `GEL_relatedness.txt` | Documentation: checking kinship in GEL data |
 
