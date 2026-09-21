@@ -105,6 +105,15 @@ Supervised by Dr Graeme Birdsey and Dr Inês Cebola
 | `computeMatrix_HDLEC_imLEC_identity.sh` | PBS job: deepTools `computeMatrix` for genome-wide HDLEC/imLEC identity heatmaps |
 | `computeMatrix_ERG_functional_HDLEC_imLEC.sh` | PBS job: deepTools `computeMatrix` for functional ERG CRE heatmaps |
 
+### Subsection 3.3: ATAC_Seq_comparison
+
+| Script | Purpose |
+|--------|---------|
+| `ATAC_HDLEC_imLEC_Comparison.ipynb` | HDLEC vs imLEC ATAC-seq comparison: genome-wide accessibility comparison (DiffBind) and ERG-specific functional CRE comparison, assessing imLEC as a CRISPRi model system |
+| `correlation_matrix_replicates.sh` | PBS job: deepTools replicate correlation QC (`multiBigwigSummary` + `plotCorrelation`) |
+| `correlation_matrix_pooled_replicates.sh` | PBS job: deepTools pooled HDLEC vs imLEC correlation QC |
+| `computeMatrix_HDLEC_imLEC_identity.sh` | PBS job: deepTools `computeMatrix` for genome-wide HDLEC/imLEC identity heatmaps |
+| `computeMatrix_ERG_functional_HDLEC_imLEC.sh` | PBS job: deepTools `computeMatrix` for functional ERG CRE heatmaps |
 
 ---
 
