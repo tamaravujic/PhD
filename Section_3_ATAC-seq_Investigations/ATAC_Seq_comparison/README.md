@@ -1,6 +1,6 @@
 # HDLEC vs imLEC ATAC-seq comparison
 
-ATAC-seq chromatin accessibility comparison between primary lymphatic endothelial cells (HDLEC) and the immortalised imLEC line, plus an ERG cis-regulatory element (CRE) check, to assess whether imLEC is a valid model system for CRISPRi work targeting ERG binding sites.
+ATAC-seq chromatin accessibility comparison between primary lymphatic endothelial cells (HDLEC) and the immortalised LEC line (imLEC), plus an ERG cis-regulatory element (CRE) check, to assess whether imLEC is a valid model system for CRISPRi work targeting ERG binding sites.
 
 Pipeline created by Dr Hannah Maude in the Cebola lab. Adapted by Tamara Vujic.
 
@@ -9,8 +9,8 @@ Pipeline created by Dr Hannah Maude in the Cebola lab. Adapted by Tamara Vujic.
 | File | Description |
 |---|---|
 | `ATAC_HDLEC_imLEC_Comparison.ipynb` | Main analysis notebook (Bash + R). Start here — it walks through QC, the genome-wide comparison, and the ERG-specific comparison, and tells you when to run each script below. |
-| `corr_replicates.sh` | PBS script: deepTools `multiBigwigSummary` + `plotCorrelation` across individual replicate bigwigs (HDLEC1, HDLEC2, imLEC1, imLEC2), 10 kb bins. |
-| `corr_pooled.sh` | PBS script: same correlation QC, but on pooled (replicate-merged) HDLEC vs imLEC bigwigs. |
+| `correlation_matrix_replicates.sh` | PBS script: deepTools `multiBigwigSummary` + `plotCorrelation` across individual replicate bigwigs (HDLEC1, HDLEC2, imLEC1, imLEC2), 10 kb bins. |
+| `correlation_matrix_pooled_replicates.sh` | PBS script: same correlation QC, but on pooled (replicate-merged) HDLEC vs imLEC bigwigs. |
 | `computeMatrix_HDLEC_imLEC_identity.sh` | PBS script: deepTools `computeMatrix` over the genome-wide HDLEC/imLEC-specific and shared CRE sets (Part 1 heatmap input). |
 | `computeMatrix_ERG_functional_HDLEC_imLEC.sh` | PBS script: deepTools `computeMatrix` over the retained/lost functional ERG CRE sets (Part 2 heatmap input). |
 
@@ -32,6 +32,6 @@ Pipeline created by Dr Hannah Maude in the Cebola lab. Adapted by Tamara Vujic.
 ## Workflow
 
 1. **Setup** — create the `diffbind` and `ATAC` conda environments (notebook Requirements cell).
-2. **QC** — run `corr_replicates.sh` and `corr_pooled.sh` for a genome-wide sanity check of replicate and cell-type agreement.
+2. **QC** — run `correlation_matrix_replicates.sh` and `correlation_matrix_pooled_replicates.sh` for a genome-wide sanity check of replicate and cell-type agreement.
 3. **Part 1: genome-wide comparison** — build a consensus CRE set, count reads with DiffBind, classify HDLEC-specific / imLEC-specific / shared regions, then visualise with `computeMatrix_HDLEC_imLEC_identity.sh` and `plotHeatmap`.
 4. **Part 2: ERG-specific comparison** — intersect ERG ChIP peaks with HDLEC ATAC to define functional ERG CREs, check which are retained/lost in imLEC, then visualise with `computeMatrix_ERG_functional_HDLEC_imLEC.sh` and `plotHeatmap`.
